@@ -1,25 +1,67 @@
 # ARA Project
 
-ARA = Artifficial Research Articles
+ARA = Awesome Research Articles
 
-## Description
-Ara is a research project about artificial intelligence. Is a static website generated with AI. We research compiler, high performance computing and other key topics in technology.
+This product is a project for storing research article we do at Sage-Code Laboratory by using AI bots. We try to use Astro to build our website. This will enable us to create rapidly articles and publish the safely to avoid any censoring and restrictions.
 
-## Motivation
+This project is open source created with GPL 3.0 license. Do not try to commercialize this product, you can't make money with it. It is offered for free on our website. Using it for making profit is a wrongdoing against open source movement and unethical.
 
-The reason for this project is that blog articles generated with AI may be detected by AI detectors and may be blocked in the future. Having a GPL project that is under version control enable many developers to contribute as volunteers and improve upon other's people work.
+Project home: [https://aro.sagecode.net](https://aro.sagecode.net)
 
-## Content
 
-This repository contains MD generated content. We are using Astro framework to host generated pages. We are not sure what the content will look like. Probably we will use a similar style like the rest of Sage-Code but using Astro the pages may be a little different.
+# Astro Starter Kit: Basics
 
-## Contribution
+This notes are created automatically by Astro when I have started the project:
 
-For contribution you must be member of Sage-Code organization on Discord. Anyone can submit a PR but only designated code maintainers from core team may merge these contributions. Another for of contribution is to participate to debates and discussions on Discord.
+```sh
+npm create astro@latest -- --template basics
+```
 
-**Homepage:** [ara.sagecode.net](https://ara.sagecode.net)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
----
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-Copiright (c) Sage-Code 2024
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
