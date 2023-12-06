@@ -5,9 +5,9 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'ARA',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/sage-code/ara',
 			},
 			sidebar: [
 				{
@@ -15,13 +15,26 @@ export default defineConfig({
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Contribution', link:'/guides/contribution/' },
 					],
+				},
+				{
+				label: 'Generators',
+				// Autogenerate a group of links for the 'guides' directory.
+				autogenerate: { directory: 'generators' },
 				},
 				{
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
 			],
+			defaultLocale: 'root', 
+			locales: {
+				root: {
+					label: 'en',
+					lang: 'English',
+			  },
+			},
 		}),
 	],
 });
