@@ -16,7 +16,7 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Example Guide', link: '/guides/example/' },
 						{ label: 'Contribution', link:'/guides/contribution/' },
-						{ label: 'MD Markup', link:'/guides/template/' },
+						{ label: 'MD Markup', link:'/guides/markup/' },
 					],
 				},
 				{
