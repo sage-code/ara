@@ -16,12 +16,18 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Example Guide', link: '/guides/example/' },
 						{ label: 'Contribution', link:'/guides/contribution/' },
+						{ label: 'MD Markup', link:'/guides/template/' },
 					],
 				},
 				{
 				label: 'Generators',
 				// Autogenerate a group of links for the 'guides' directory.
 				autogenerate: { directory: 'generators' },
+				},
+				{
+				label: 'Structures',
+				// Autogenerate a group of links for the 'guides' directory.
+				autogenerate: { directory: 'structures' },
 				},
 				{
 					label: 'Reference',
