@@ -34,13 +34,6 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 			],
-			defaultLocale: 'root', 
-			locales: {
-				root: {
-					label: 'en',
-					lang: 'English',
-			  },
-			},
 		}),
 	],
 });
