@@ -6,6 +6,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'ARA',
+			customCss: [
+				// Relative path to your custom CSS file
+				'./src/styles/custom.css'
+			],			
 			social: {
 				github: 'https://github.com/sage-code/ara',
 			},
@@ -20,14 +24,14 @@ export default defineConfig({
 					],
 				},
 				{
-				label: 'Generators',
-				// Autogenerate a group of links for the 'guides' directory.
-				autogenerate: { directory: 'generators' },
+					label: 'Structures',
+					// Autogenerate a group of links
+					autogenerate: { directory: 'structures' },
 				},
 				{
-				label: 'Structures',
-				// Autogenerate a group of links for the 'guides' directory.
-				autogenerate: { directory: 'structures' },
+					label: 'Algorithms',
+					// Autogenerate a group of links
+					autogenerate: { directory: 'algorithms' },
 				},
 				{
 					label: 'Reference',

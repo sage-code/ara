@@ -1,5 +1,5 @@
 ---
-title: DS - Abstraction
+title: Abstraction
 description: Separating Behavior and Implementation
 ---
 
@@ -39,6 +39,8 @@ description: Separating Behavior and Implementation
 
 To delve deeper into data abstraction, we can explore specific data structures like arrays, stacks, and queues in detail. We can analyze their interface, implementation, operations, and performance characteristics. Additionally, we can discuss real-world applications of data abstraction and explore advanced topics like pointer arithmetic, memory management, and recursion.
 
+---
+
 ## What are Arrays?
 
 An array is a fundamental data structure in programming that stores a fixed-size collection of elements of the same type. These elements are accessed using their index, which is an integer starting from 0 or 1. Arrays offer efficient random access and memory management, making them a popular choice for various applications.
@@ -76,6 +78,8 @@ An array is a fundamental data structure in programming that stores a fixed-size
 **Conclusion:**
 
 Arrays are powerful data structures offering efficient random access, memory management, and simple implementation. However, their fixed size and limitations in insertion/deletion can be drawbacks in specific scenarios. By understanding their strengths and weaknesses, you can effectively choose and utilize arrays for appropriate applications where their advantages outweigh their limitations.
+
+---
 
 ## What is a List?
 
@@ -124,6 +128,8 @@ Several different types of lists exist, each with its own characteristics:
 **Conclusion:**
 
 Lists are fundamental and versatile data structures offering efficient access to ordered data. Understanding their strengths, weaknesses, and diverse applications is essential for effective programming and data manipulation. Choosing the right type of list based on your specific needs and performance requirements will ensure optimal efficiency and resource utilization in your applications.
+
+---
 
 ## What are Trees? 
 
@@ -181,6 +187,7 @@ Several types of trees exist, each with its own properties and functionalities:
 
 Trees offer a powerful and versatile way to organize and manipulate data hierarchically. Understanding the diverse types of trees, their strengths, weaknesses, and use cases allows developers to choose the appropriate tree structure for their specific needs and optimize their applications for efficient and scalable data management.
 
+---
 
 ## What are Graphs?
 
@@ -233,6 +240,8 @@ Graphs have extensive applications across various domains:
 **Conclusion:**
 
 Graphs are powerful tools for modeling and analyzing complex systems and relationships. Understanding their structure, properties, and diverse types equips developers with the ability to leverage them effectively in various applications. From social networks and navigation systems to recommendation systems and data analysis, graphs offer a versatile and scalable approach for solving challenging real-world problems.
+
+---
 
 ## What are Sets?
 

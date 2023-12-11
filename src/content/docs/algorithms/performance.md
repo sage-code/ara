@@ -1,5 +1,5 @@
 ---
-title: DS - Performance
+title: Performance
 description: Time Complexity & Big O Notation
 author: Bard/Gemini
 date: 2023-12-08
@@ -111,7 +111,10 @@ By understanding the difference between efficiency and performance and carefully
 
 <hr>
 
-## Performance
+## Structures
+
+The performance can be seriously influenced by the structure chosen to organize your data in memory. In next table we have summarized the performance properties for each data structure. Chose wisely depending on your use-case.
+
 
 | Data Structure | Average Time Complexity | Worst-Case Time Complexity | Space Complexity |
 |---|---|---|---|

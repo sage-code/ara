@@ -1,5 +1,5 @@
 ---
-title: DS - Introduction
+title: Overview
 description: Data Structures & Algorithms
 ---
 
