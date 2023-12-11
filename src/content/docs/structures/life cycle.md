@@ -1,5 +1,5 @@
 ---
-title: Life Cycle
+title: LifeCycle
 description: Life Cycle of a Data Structure in an Application
 ---
 
@@ -372,6 +372,7 @@ By understanding the performance implications of different data stream formats a
 
 
 ---
+
 
 **Disclaim:** This article was created by Bard using our prompts.
 
