@@ -1,6 +1,8 @@
 ---
 title: Traversal
 description: Array Traversal
+collection: algorithms
+sort: 3
 ---
 
 Array traversal is one of the most basic and fundamental algorithms in computer science. It is considered a simple algorithm because it involves straightforward logic and requires minimal computational resources.
@@ -42,7 +44,7 @@ This code will print the following output:
 
 ### Sum of elements
 
-Here's how you can demonstrate array traversal in Julia by making a sum for an Array of 12 Fibonacci numbers in series from first to last and print the sum:
+Here's we demonstrate array traversal in Julia by making a sum for an Array of 12 Fibonacci numbers in series from first to last and print the sum:
 
 ```julia
 # Define a function to calculate the nth Fibonacci number
@@ -83,7 +85,9 @@ This code demonstrates two ways to traverse an array in Julia:
 
 Both methods achieve the same result, but the explicit loop might be easier to understand for beginners, while the implicit loop can be more concise and readable for experienced Julia programmers.
 
+---
 
+**Disclaim:** Examples are created with Bard.
 
 
 

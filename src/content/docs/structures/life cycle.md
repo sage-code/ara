@@ -1,6 +1,7 @@
 ---
 title: LifeCycle
 description: Life Cycle of a Data Structure in an Application
+sort: 4
 ---
 
 A data structure goes through several stages throughout its existence within an application. Here's a breakdown of the typical life cycle:

@@ -3,7 +3,9 @@ title: Introduction
 description: Algorithms overview
 author: Bard/Gemini
 date: 2023-12-08
-tags: algorithms, examples
+tags: [algorithms, examples]
+collection: algorithms
+sort: 1
 ---
 
 **Welcome to the Fascinating World of Algorithms!**
