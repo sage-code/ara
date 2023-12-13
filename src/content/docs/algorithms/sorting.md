@@ -5,6 +5,7 @@ author: Bard/Gemini
 date: 2023-12-12
 tags: [sorting, algorithms]
 collection: algorithms
+parent: Introduction
 sort: 5
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Abstraction
 description: Separating Behavior and Implementation
+sort: 1
 ---
 
 ***Data abstraction:*** is a fundamental principle in computer science that involves separating the **what** from the **how**. It focuses on providing a simplified view of data and its operations, hiding the underlying implementation details. This separation promotes several benefits, including:
