@@ -42,7 +42,7 @@ There is more to learn about markup language you should read the guide before st
 
 ## Quotes
 
-Using quotes is more rare but here is one that I like.
+After we finish the article we use a quote by a celebrity or computer scientist related to article.
 
 ---
 

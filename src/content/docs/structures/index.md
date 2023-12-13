@@ -1,5 +1,5 @@
 ---
-title: Structures
+title: Introduction
 description: Data Structures & Algorithms
 sort: 0
 ---
@@ -39,6 +39,8 @@ Understanding data structures is fundamental for any programmer, regardless of t
     - Traversal Algorithms: Techniques for visiting all nodes in a graph (BFS, DFS)
 3. **Hash Tables:** Efficient data structures for searching based on key-value pairs.
 
+---
+
 ## Advanced Topics:
 
 1. **Sorting Algorithms:** Methods for arranging data in a specific order (e.g., Merge Sort, Quick Sort, Heap Sort).
@@ -61,5 +63,7 @@ Understanding data structures is fundamental for any programmer, regardless of t
 - Practice implementing data structures in different programming languages.
 - Start with simpler structures and gradually progress to more complex ones.
 - Don't hesitate to seek help and clarification when needed.
+
+---
 
 **Remember,** learning data structures is a journey, not a destination. Be patient, persistent, and enjoy the process!

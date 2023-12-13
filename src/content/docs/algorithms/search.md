@@ -3,6 +3,9 @@ title: Search
 description: Search algorithms
 author: Bard/Gemini
 date: 2023-12-11
+collection: algorithms
+parent: index
+sort: 4
 ---
 
 Search algorithms are one of the most important algorithms for collections for several crucial reasons:
@@ -69,7 +72,7 @@ These complex search algorithms are characterized by:
 * **Complex search algorithms** are necessary for finding optimal solutions in large or complex search spaces. They are more powerful but also require more computational resources and expertise to implement.
 
 
-## In Julia
+## Array Search
 
 Here's an explanation of search algorithms for an array in Julia, considering both unsorted and sorted arrays:
 
@@ -148,3 +151,279 @@ Choosing the right search algorithm depends on your specific needs:
 * **For specific requirements:** Interpolation search might be beneficial for specific data distributions.
 
 It's important to consider the trade-offs between simplicity, efficiency, and other factors when choosing a search algorithm for your application.
+
+## Tree Algorithms
+
+Trees are fundamental data structures in computer science, representing hierarchical relationships between nodes. Here, we'll explore some basic algorithms for manipulating and traversing trees in the Julia programming language:
+
+### 1. Tree Search
+
+Tree search aims to find a specific node based on its value. We can use different search strategies, such as:
+
+**a. Depth-first search (DFS):** This method explores each branch as far as possible before backtracking. It can be implemented recursively or iteratively.
+
+```julia
+function dfs(node, target)
+    if node.value == target
+        return node
+    elseif !is_empty_node(node.left)
+        result = dfs(node.left, target)
+        if !isnothing(result)
+            return result
+        end
+    end
+    if !is_empty_node(node.right)
+        result = dfs(node.right, target)
+        if !isnothing(result)
+            return result
+        end
+    end
+    return nothing
+end
+```
+
+**b. Breadth-first search (BFS):** This method explores all nodes at the current level before moving to the next level. It can be implemented using a queue data structure.
+
+```julia
+function bfs(node, target)
+    queue = [node]
+    while !isempty(queue)
+        current_node = popfirst(queue)
+        if current_node.value == target
+            return current_node
+        end
+        push!(queue, current_node.left)
+        push!(queue, current_node.right)
+    end
+    return nothing
+end
+```
+
+### 2. Tree Insertion
+
+Tree insertion involves adding a new node to the tree at the appropriate position based on its value.
+
+```julia
+function insert(node, new_node)
+    if new_node.value < node.value
+        if is_empty_node(node.left)
+            node.left = new_node
+        else
+            insert(node.left, new_node)
+        end
+    else
+        if is_empty_node(node.right)
+            node.right = new_node
+        else
+            insert(node.right, new_node)
+        end
+    end
+end
+```
+
+### 3. Tree Deletion
+
+Tree deletion removes a specific node from the tree. It involves handling different cases depending on the node's children and position in the tree.
+
+```julia
+function delete(node, target)
+    if isnothing(node)
+        return nothing
+    elseif target < node.value
+        node.left = delete(node.left, target)
+    elseif target > node.value
+        node.right = delete(node.right, target)
+    else
+        if is_empty_node(node.left)
+            return node.right
+        elseif is_empty_node(node.right)
+            return node.left
+        else
+            replacement_node = find_min_node(node.right)
+            node.value = replacement_node.value
+            node.right = delete(node.right, replacement_node.value)
+        end
+    end
+    return node
+end
+```
+
+These are just some basic examples. You can explore additional algorithms for balancing trees, determining tree height, and manipulating specific types of trees like binary search trees.
+
+---
+
+## Graph Algorithms in Julia
+
+Graphs are powerful data structures representing relationships between objects. Julia boasts a rich ecosystem for graph manipulation and analysis through packages like Graphs.jl and LightGraphs.jl. Let's explore some fundamental graph algorithms with examples in Julia:
+
+### 1. Breadth-First Search (BFS)
+
+BFS systematically explores all nodes in a graph level-by-level. It can find the shortest path between two nodes and identify connected components.
+
+```julia
+using Graphs
+
+function bfs(g, start_node)
+  queue = [start_node]
+  visited = Dict{Int, Bool}()
+  while !isempty(queue)
+    current_node = popfirst(queue)
+    visited[current_node] = true
+    for neighbor in neighbors(g, current_node)
+      if !haskey(visited, neighbor)
+        visited[neighbor] = false
+        push!(queue, neighbor)
+      end
+    end
+  end
+  return visited
+end
+
+# Example usage
+g = SimpleGraph(5)
+add_edge!(g, 1, 2)
+add_edge!(g, 2, 3)
+add_edge!(g, 3, 4)
+
+visited = bfs(g, 1)
+println(visited)
+```
+
+### 2. Depth-First Search (DFS)
+
+DFS explores each branch as deeply as possible before backtracking. It's useful for finding topological order, cycles, and strongly connected components.
+
+```julia
+function dfs(g, start_node)
+  stack = [start_node]
+  visited = Dict{Int, Bool}()
+  while !isempty(stack)
+    current_node = popfirst(stack)
+    visited[current_node] = true
+    for neighbor in neighbors(g, current_node)
+      if !haskey(visited, neighbor)
+        visited[neighbor] = false
+        push!(stack, neighbor)
+        dfs(g, neighbor)
+      end
+    end
+  end
+  return visited
+end
+
+# Example usage
+g = SimpleDigraph(5)
+add_edge!(g, 1, 2)
+add_edge!(g, 2, 3)
+add_edge!(g, 3, 4)
+add_edge!(g, 4, 1)
+
+visited = dfs(g, 1)
+println(visited)
+```
+
+### 3. Dijkstra's Algorithm
+
+Dijkstra's algorithm finds the shortest path between two nodes in a weighted graph with non-negative edge weights.
+
+```julia
+function dijkstra(g, start_node, end_node)
+  distance = Dict{Int, Float64}()
+  predecessor = Dict{Int, Int}()
+  for node in nodes(g)
+    distance[node] = Inf
+  end
+  distance[start_node] = 0
+  queue = PriorityQueue(distance)
+  while !isempty(queue)
+    current_node, current_distance = pop!(queue)
+    for neighbor, weight in edges(g, outgoing=current_node)
+      new_distance = distance[current_node] + weight
+      if new_distance < distance[neighbor]
+        distance[neighbor] = new_distance
+        predecessor[neighbor] = current_node
+        push!(queue, neighbor, new_distance)
+      end
+    end
+  end
+  if distance[end_node] == Inf
+    return nothing
+  end
+  path = []
+  node = end_node
+  while node != start_node
+    path.push!(node)
+    node = predecessor[node]
+  end
+  path.push!(start_node)
+  return reverse(path), distance[end_node]
+end
+
+# Example usage
+g = SimpleWeightedGraph(5)
+add_edge!(g, 1, 2, 1)
+add_edge!(g, 2, 3, 2)
+add_edge!(g, 3, 4, 3)
+add_edge!(g, 1, 4, 5)
+
+path, distance = dijkstra(g, 1, 4)
+println("Shortest path:", path)
+println("Distance:", distance)
+```
+
+### 4. Minimum Spanning Tree (MST)
+
+MST algorithms like Prim's and Kruskal's algorithms find a subset of edges in a weighted graph that connects all nodes with the minimum total weight.
+
+```julia
+function prim(g)
+  used = Dict{Int, Bool}()
+  distance = Dict{Int, Float64}()
+  predecessor = Dict{Int}()
+  for node in nodes(g)
+    distance[node] = Inf
+    used[node] = false
+  end
+  start_node = firstnode(g)
+  distance[start_node] = 0
+  used[start_node] = true
+  queue = PriorityQueue(distance)
+  while !isempty(queue)
+    current_node, current_distance = pop!(queue)
+    for neighbor, weight in edges(g, outgoing=current_node)
+      if !used[neighbor] && weight < distance[neighbor]
+        distance[neighbor] = weight
+        predecessor[neighbor] = current_node
+        push!(queue, neighbor, weight)
+      end
+    end
+    used[current_node] = true
+  end
+  mst_edges = []
+  for node in nodes(g)
+    if haskey(predecessor, node)
+      mst_edges.push!((predecessor[node], node))
+    end
+  end
+  return mst_edges
+end
+
+# Example usage
+g = SimpleWeightedGraph(5)
+add_edge!(g, 1, 2, 1)
+add_edge!(g, 2, 3, 2)
+add_edge!(g, 3, 4, 3)
+add_edge!(g, 1, 4, 5)
+
+mst_edges = prim(g)
+println("Minimum Spanning Tree:", mst_edges)
+```
+
+These are just some examples of basic graph algorithms in Julia. There are many more sophisticated algorithms available for various tasks like network analysis, path planning, and community detection. You can explore them further using the resources mentioned earlier.
+
+---
+
+> Eric Schmidt: "The algorithms will make decisions, and we will be told the results."
+
+
+
