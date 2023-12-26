@@ -5,7 +5,7 @@ author: Bard/Gemini
 date: 2023-12-08
 tags: [algorithms, examples]
 collection: algorithms
-sort: 1
+sort: 10
 parent: null
 children:
   - search: Search

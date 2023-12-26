@@ -1,5 +1,5 @@
 ---
-title: Performance
+title: Efficiency
 description: Time Complexity & Big O Notation
 author: Bard/Gemini
 date: 2023-12-08
