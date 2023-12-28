@@ -1,5 +1,5 @@
 # ARA Project
-ARA = Awesome Rust Articles
+ARA = Awesome Rust Algorithms
 
 This product is a project for storing research article we do at Sage-Code Laboratory by using AI bots. We use Astro to build our website. This will enable us to create rapidly articles and publish the safely to avoid any censoring and restrictions.
 
