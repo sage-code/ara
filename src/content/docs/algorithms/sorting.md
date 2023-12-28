@@ -178,47 +178,71 @@ Lookup tables can be a valuable tool for improving the performance and efficienc
 
 ---
 
-**Example of lookup table in Julia**
+**Example of lookup table in Rust**
 
-Here's an example of how to create a dictionary and a lookup table in Julia:
+Here's an example of how to create a dictionary and a lookup table in Rust:
 
-```julia
-# Define a dictionary
-fruits = Dict("apple" => "red", 
-              "banana" => "yellow", 
-              "orange" => "orange")
 
-# Create an empty lookup table (hash table)
-lookup_table = Dict()
+```rust
+use std::collections::HashMap;
 
-# Build the lookup table based on the dictionary
-for (fruit, color) in fruits
-  # Add an entry to the lookup table with the fruit
-  # as the key and the color as the value
-  lookup_table[fruit] = color
-end
+fn main() {
+    // Create a dictionary (hash map) using curly braces
+    let fruits = HashMap::from([
+        ("apple", "red"),
+        ("banana", "yellow"),
+        ("orange", "orange"),
+    ]);
 
-# Lookup a fruit by its color
-# This uses the lookup table for faster retrieval
-color = "orange"
-fruit = lookup_table[color]
+    // Create an empty lookup table (hash map)
+    let mut lookup_table = HashMap::new();
 
-# Check if the fruit was found
-if fruit
-  println("The fruit with color $color is $fruit.")
-else
-  println("No fruit found with color $color.")
-end
+    // Invert the fruits hash map to create the lookup table
+    for (fruit, color) in &fruits {
+        lookup_table.insert(color, fruit);
+    }
 
-# Add a new entry to the dictionary
-fruits["mango"] = "yellow"
+    // Lookup a fruit by its color
+    let color = "orange";
+    let fruit = lookup_table.get(color);
 
-# Update the lookup table with the new entry
-lookup_table["mango"] = fruits["mango"]
+    // Check if the fruit was found
+    match fruit {
+        Some(fruit) => println!("The fruit with color {} is {}.", color, fruit),
+        None => println!("No fruit found with color {}.", color),
+    }
 
-# Print the updated lookup table
-println(lookup_table)
+    // Add a new entry to the dictionary
+    fruits.insert("mango", "yellow");
+
+    // Update the lookup table with the new entry
+    lookup_table.insert("yellow", "mango"); // Assuming only one fruit per color
+
+    // Print the updated lookup table
+    println!("{:?}", lookup_table);
+}
 ```
+
+**Explanation:**
+
+- **HashMap:** Rust's primary dictionary/hash table implementation.
+- **Creating HashMaps:**
+    - `HashMap::from([("key1", "value1"), ("key2", "value2")])` for initial values.
+    - `HashMap::new()` for an empty hash map.
+- **Inserting Values:** `map.insert("key", "value")`.
+- **Retrieving Values:** `map.get("key")` returns an `Option<&V>` (optional reference to the value).
+- **Iterating:** `for (key, value) in &map { .. }`.
+- **Inversion:** Creating `lookup_table` by swapping keys and values from `fruits`.
+- **Lookup:** Using `get` to find a value by key and handle potential absence gracefully with `match`.
+- **Updating:** Adding new entries to both `fruits` and `lookup_table`.
+- **Printing:** `println!("{:?}", map)` for debugging.
+
+**Key Rust Concepts:**
+
+- **Immutability by Default:** Mutable hash maps need `mut`.
+- **Option Type:** Handles potential absence of values.
+- **Pattern Matching:** Clean way to handle `Option` values.
+
 
 This example demonstrates how to:
 
@@ -229,85 +253,65 @@ This example demonstrates how to:
 5. Add a new entry to the dictionary and update the lookup table accordingly.
 6. Print the updated lookup table.
 
-This is a simple example, but it illustrates the basic principles of how dictionaries and lookup tables work together in Julia. You can adapt and extend this example to suit your specific needs and use cases.
+This is a simple example, but it illustrates the basic principles of how dictionaries and lookup tables work together in Rust. You can adapt and extend this example to suit your specific needs and use cases.
 
 ---
 
 ## Bubble Sort
 
-Here's an example of bubble sort for a dictionary in Julia, along with a function to create the lookup table based on the sorted dictionary:
+Here's an example of bubble sort for a dictionary in Rust, along with a function to create the lookup table based on the sorted dictionary:
 
-```julia
-# Define a function to swap two values in a dictionary
-function swap!(dict, key1, key2)
-  temp = dict[key1]
-  dict[key1] = dict[key2]
-  dict[key2] = temp
-end
 
-# Function for bubble sort
-function bubble_sort_dict!(dict, sort_by_value = true)
-  # Flag to indicate if any swap occurred
-  swapped = true
+```rust
+use std::collections::HashMap;
 
-  # Loop through the dictionary while swaps are still occurring
-  while swapped
-    swapped = false
-    for (key1, value1), (key2, value2) in pairs(dict)
-      # Check sorting condition based on value or key
-      if (sort_by_value && value1 < value2) || 
-         (!sort_by_value && key1 > key2)
-        # Swap keys if the condition is met
-        swap!(dict, key1, key2)
-        swapped = true
-      end
-    end
-  end
-end
+fn main() {
+    // ... (Hash maps and lookup table creation, similar to previous example)
 
-# Function to create a lookup table based on the sorted dictionary
-function create_lookup_table(dict)
-  lookup_table = Dict()
-  index = 1
-  for (key, _) in pairs(dict)
-    lookup_table[key] = index
-    index += 1
-  end
-  return lookup_table
-end
+    // Swap function for hash maps (mutating)
+    fn swap_values(map: &mut HashMap<K, V>, key1: &K, key2: &K)
+    where
+        K: Eq + Hash,
+        V: std::fmt::Debug + Clone,
+    {
+        let temp = map[key1].clone();
+        map.insert(key1.clone(), map[key2].clone());
+        map.insert(key2.clone(), temp);
+    }
 
-# Example usage
-fruits = Dict("apple" => 10, "banana" => 20, "orange" => 5)
+    // Bubble sort for hash maps (mutating)
+    fn bubble_sort_hash_map(map: &mut HashMap<K, V>, sort_by_value: bool)
+    where
+        K: Eq + Hash + std::cmp::Ord,
+        V: std::cmp::Ord + std::fmt::Debug + Clone,
+    {
+        let mut swapped = true;
+        while swapped {
+            swapped = false;
+            for (key1, value1), (key2, value2) in map.iter().tuple_windows() {
+                if (sort_by_value && value1 < value2) || (!sort_by_value && key1 > key2) {
+                    swap_values(map, key1, key2);
+                    swapped = true;
+                }
+            }
+        }
+    }
 
-# Sort the dictionary by value
-bubble_sort_dict!(fruits)
-
-# Create a lookup table based on the sorted dictionary
-lookup_table = create_lookup_table(fruits)
-
-# Access a fruit by its position in the sorted order
-fruit = lookup_table["banana"]
-
-# Print the sorted dictionary
-println("Sorted fruits:")
-for (key, value) in fruits
-  println("$key: $value")
-end
-
-# Print the lookup table
-println("Lookup table:")
-for (key, value) in lookup_table
-  println("$key: $value")
-end
+    // ... (Example usage and printing, similar to previous example)
+}
 ```
 
-This code defines several functions:
+**Key Rust Considerations:**
 
-* `swap!`: This function swaps the values of two keys in a dictionary.
-* `bubble_sort_dict!`: This function implements the bubble sort algorithm for a dictionary. It takes the dictionary as a mutable argument and sorts it in-place. The `sort_by_value` keyword argument allows you to choose between sorting by value (`true`) or key (`false`).
-* `create_lookup_table`: This function creates a lookup table based on the sorted dictionary. It assigns an index to each key in the order of the sorted dictionary.
+- **Swap Function:** Uses `clone()` for value types and `.clone()` for keys (owned types).
+- **Bubble Sort:**
+    - Generic for flexibility (`K`, `V` types).
+    - Requires `Ord` trait for keys and values for comparison.
+    - Uses `tuple_windows()` for pairwise iteration.
+    - Employs `std::fmt::Debug` for printing in `println!`.
+- **Hash Map Ordering:** While sorting is possible, consider alternate data structures like `BTreeMap` for inherent ordering.
+- **Alternative Sorting Algorithms:** Explore efficient algorithms like quicksort or merge sort for larger hash maps.
 
-The example demonstrates how to use these functions to create a sorted dictionary and a corresponding lookup table. You can modify this code to adapt it to your specific needs and use cases.
 
 ---
 

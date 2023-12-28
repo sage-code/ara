@@ -18,86 +18,6 @@ A data structure goes through several stages throughout its existence within an 
 
 **5. Deletion:** When no longer needed, the data structure is freed from memory. This ensures efficient memory management and prevents memory leaks.
 
-Here are some examples of the data structure life cycle in Julia:
-
-### **1. Array:**
-
-```julia
-# Creation
-my_array = Array{Int}(5)
-
-# Initialization
-for i in 1:5
-    my_array[i] = i
-end
-
-# Access
-first_element = my_array[1]
-
-# Modification
-my_array[2] = 10
-
-# Deletion
-delete!(my_array)
-```
-
-### **2. Dictionary:**
-
-```julia
-# Creation
-my_dict = Dict{String, Int}()
-
-# Initialization
-my_dict["name"] = "John"
-my_dict["age"] = 30
-
-# Access
-name = my_dict["name"]
-
-# Modification
-my_dict["age"] = 31
-
-# Deletion
-delete!(my_dict, "age")
-```
-
-### **3. Linked List:**
-
-```julia
-# Creation
-struct Node
-    data::Int
-    next::Node
-end
-
-head = Node(1)
-head.next = Node(2)
-head.next.next = Node(3)
-
-# Access
-current_node = head
-while current_node
-    println(current_node.data)
-    current_node = current_node.next
-end
-
-# Modification
-head.next.data = 4
-
-# Deletion
-current_node = head
-while current_node.next.next
-    current_node = current_node.next
-end
-current_node.next = nothing
-
-while current_node
-    next_node = current_node.next
-    delete!(current_node)
-    current_node = next_node
-end
-```
-
 Understanding the life cycle of data structures is crucial for efficient coding practices. It helps you manage memory effectively, avoid data corruption, and write clean and maintainable code. As you explore different data structures and algorithms, pay close attention to how they are created, initialized, accessed, modified, and deleted in your programs.
 
 ---
@@ -195,7 +115,6 @@ Multi-dimensional arrays represent data with more than one dimension, typically 
 
 * Elements within a column are stored sequentially in memory. Traversal iterates through columns first, then elements within each column.
 * This order can be advantageous for operations involving entire columns, such as linear algebra calculations.
-* Languages like Fortran and Julia use this approach.
 
 **Performance Implications of Array Traversal Order:**
 
@@ -204,25 +123,36 @@ The choice of row-major versus column-major order can impact performance dependi
 * **Row-major:**
     * **Cache locality:** Traversing rows sequentially takes advantage of cache locality, as elements within a row are likely to be stored in adjacent memory locations. This can improve performance for operations accessing consecutive elements.
     * **Non-consecutive access:** Accessing elements across different rows can lead to cache misses and performance penalties, particularly for large arrays.
+
 * **Column-major:**
     * **Consecutive access:** Traversing columns is efficient for operations where entire columns are accessed consecutively, improving performance for linear algebra calculations and vectorized operations.
     * **Non-consecutive access:** Accessing elements across different columns can be less efficient, potentially leading to cache misses and performance losses.
 
-**Performance Impact of Data Transfer between Languages:**
+ **Rust primarily uses row-major order for matrices**. This means that elements are stored in memory sequentially by row, with the first row's elements followed by the second row's elements, and so on.
 
-When transferring data between languages using different memory orders, performance can suffer due to the need for data conversion. This process involves copying the data and rearranging it into the target language's memory order.
+**Here's a breakdown of how row-major order works for a 2D matrix:**
 
-To minimize performance losses, consider the following strategies:
+- Imagine a 3x2 matrix:
+  ```
+  [1, 2]
+  [3, 4]
+  [5, 6]
+  ```
+- In memory, it would be stored as: `1, 2, 3, 4, 5, 6`
+- To access an element at (row i, column j), the formula is: `index = i * num_columns + j`
+- For example, to access the element at (2, 1) (which is 5): `index = 2 * 2 + 1 = 5`
 
-* **Choose a common data format:** If possible, use a common data format like HDF5 or NetCDF that supports different memory orders.
-* **Explicitly convert data:** If transferring directly between languages, implement code to convert data to the target language's memory order before performing operations.
-* **Utilize libraries:** Some libraries are designed to handle data transfer between languages with different memory orders efficiently.
+**Key points to remember:**
 
-**Examples of Language Differences:**
+- **Multidimensional arrays:** Rust's multi-dimensional arrays are also row-major, extending the concept to higher dimensions.
+- **External libraries:** Some external libraries for linear algebra or numerical computing might use column-major order for compatibility with specific algorithms or conventions.
+- **Explicit specification:** If you need to work with column-major matrices, certain libraries might offer ways to explicitly specify the order, or you might need to implement custom matrix structures.
 
-* **C/Python (NumPy):** Row-major order.
-* **Fortran:** Column-major order.
-* **Julia:** Initially column-major, but allows specifying row-major order.
+**Recommendations:**
+
+- **Be mindful of the order:** When working with matrices in Rust, be aware of the row-major order to ensure correct indexing and calculations.
+- **Check documentation for libraries:** If you're using external libraries, consult their documentation to determine the matrix ordering they employ.
+- **Consider performance implications:** For performance-critical operations, understanding matrix ordering can help you optimize code and memory access patterns.
 
 **Conclusion:**
 
