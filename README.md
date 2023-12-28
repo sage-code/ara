@@ -1,7 +1,7 @@
 # ARA Project
-ARA = Awesome Research Articles
+ARA = Awesome Rust Articles
 
-This product is a project for storing research article we do at Sage-Code Laboratory by using AI bots. We try to use Astro to build our website. This will enable us to create rapidly articles and publish the safely to avoid any censoring and restrictions.
+This product is a project for storing research article we do at Sage-Code Laboratory by using AI bots. We use Astro to build our website. This will enable us to create rapidly articles and publish the safely to avoid any censoring and restrictions.
 
 This project is open source created with GPL 3.0 license. Do not try to commercialize this product, you can't make money with it. It is offered for free on our website. Using it for making profit is a wrongdoing against open source movement and unethical.
 
