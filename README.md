@@ -5,7 +5,6 @@ This product is a project for storing research article we do at Sage-Code Labora
 
 This project is open source created with GPL 3.0 license. Do not try to commercialize this product, you can't make money with it. It is offered for free on our website. Using it for making profit is a wrongdoing against open source movement and unethical.
 
-Project home: [https://aro.sagecode.net](https://aro.sagecode.net)
 
 
 I have restarted the project using a theme:
